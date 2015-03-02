@@ -1,0 +1,44 @@
+	<br><br>
+	<div class="container" style="width: 500px">
+		<%= @msg %>
+		
+		<%=form_tag("/users/authenticate",method: 'post') do%>
+			<div class="form group">
+				<label >username *</label>
+				<input  id="uname" class="form-control" name="username" value=<%=@username%>>
+			</div>
+			<div class="form group">
+				<label >password *</label>
+				<input  id="pwd" type="password" class="form-control" name="password">
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" name="rem_uname">remember my username
+				</label>
+			</div>
+			<div>
+				<button type="submit" class="btn btn-default" onclick="return checkInput();">login</button>
+				<button class="btn btn-default" onclick="return backToHome();">return</button>
+			</div>
+		<%end%>
+
+		<script type ="text/javascript">
+			function checkInput(){
+				var uname=document.getElementById("uname")
+				if (uname.value.length==0) {
+					alert("please enter username")
+					return false
+				}
+				var pwd=document.getElementById("pwd")
+				if (pwd.value.length==0) {
+					alert("please enter password")
+					return false
+				}
+				return true
+			}
+
+			function backToHome(){
+				window.location.href="/"
+				return false
+			}
+		</script>
