@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   get 'users/modify/:id' =>'users#modify', as: :users_modify
   get 'users/delete/:id' =>'users#delete'
   get 'users/:id&:page_num' => 'users#show'
+
+  get 'categories/new/:pid' => 'categories#new',as: :categories_new
+  post 'categories' => 'categories#create'
+  get 'categories/admin' => 'categories#index' ,as: :categories_admin
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

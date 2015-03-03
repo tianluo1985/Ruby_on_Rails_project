@@ -2,13 +2,14 @@ class User < ActiveRecord::Base
 	validates :username, :password, presence: true
 	validates :username, uniqueness: true
 	after_create :user_created
-
+	#later I realized this could be done by simply caching the html pages
+	#so In later modules I use that way
 	@@page_size=10
 	@@total_pages=nil
 	@@total_users=nil
 
 	#call backs to update the total user number and page number after
-	#new user created
+	#new user created 
 	def user_created
 		@@total_users=User.total_users+1
 		@@total_pages=(@@total_users+@@page_size-1)/@@page_size

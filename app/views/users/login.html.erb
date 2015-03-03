@@ -1,6 +1,8 @@
 	<br><br>
 	<div class="container" style="width: 500px">
-		<%= @msg %>
+		<% if notice%>
+		<p class='notice'><%= notice %></p>
+		<%end%>
 		
 		<%=form_tag("/users/authenticate",method: 'post') do%>
 			<div class="form group">

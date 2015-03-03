@@ -1,0 +1,36 @@
+	<br><br>
+	<div class="container" style="width: 500px">
+		
+		<%=form_tag("/categories",method: "post") do %>
+			<input type="hidden" name="pid" value=<%=@pid%>>
+			<div class="form group">
+				<label >category name *</label>
+				<input  id="name" class="form-control" placeholder="Enter Category Name" name="name"/>
+			</div>
+			<div class="form group">
+				<label>description</label>
+				<textarea id="descr" class="form-control" name="descr" col="24 " row="4"></textarea>
+			</div>		
+			<div>
+				<button type="submit" class="btn btn-default" onclick="return checkInput();">add</button>
+				<button class="btn btn-default" onclick="return backToHome();">return</button>
+			</div>
+		<%end%>
+		
+
+		<script type ="text/javascript">
+			function checkInput(){
+				var name=document.getElementById("name")
+				if (name.value.length==0) {
+					alert("please enter username")
+					return false
+				}
+				return true
+			}
+
+			function backToHome(){
+				window.location.href="/"
+				return false
+			}
+		</script>
+	

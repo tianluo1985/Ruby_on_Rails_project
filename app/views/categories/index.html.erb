@@ -1,0 +1,19 @@
+<br><br>
+      <div class="container">
+        <div class="col-md-9">
+          <br>
+          <% @root_categories.each do |rcate|%>
+          
+          <h3><%=rcate.name%> <%=link_to 'add category', categories_new_url(rcate.id),class: "btn btn-default" %></h3>
+        
+          <ul>
+          <%cates=Category.where(pid: rcate.id)%>
+          <%cates.each do |cate|%>
+          <li><h4><%=cate.name%></h4></li>
+          <%end%>
+          </ul>
+          <%end%>
+        </div>
+      </div>
+    
+     

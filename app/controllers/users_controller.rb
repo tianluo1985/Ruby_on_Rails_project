@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 		if user.valid?
 			redirect_to '/'
 		else
-			redirect_to users_new_path
+			redirect_to users_new_url
 		end
 	end
 
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 		if user.save
 			redirect_to '/users'
 		else
-			redirect_to users_modify_path(@id)
+			redirect_to users_modify_url(@id)
 		end
 	end
 	def login
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
 			end
 			redirect_to '/'
 		else
-			redirect_to users_login_path(msg: 'login fails')
+			redirect_to users_login_url ,notice: 'username or password not right'
 		end
 	end
 end
