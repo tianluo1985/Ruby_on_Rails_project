@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	def test
+		
 		#user=User.authenticate(username:'UserG',password:'123456')
 		#session[:user_id]=user.id	
 		#@user_id=session[:user_id]
@@ -12,11 +13,18 @@ class UsersController < ApplicationController
 	end
 
 	def create
+		#begin
+		#	user=User.create!(username: params[:username],password: params[:password],phone: params[:phone],email: params[:email],addr: params[:addr])
+		#rescue
+		#	redirect_to '/users/new'
+		#	return
+		#end
+		#redirect_to '/'
 		user=User.create(username: params[:username],password: params[:password],phone: params[:phone],email: params[:email],addr: params[:addr])
-		if user
+		if user.valid?
 			redirect_to '/'
 		else
-			redirect_to '/users/new'
+			redirect_to users_new_path
 		end
 	end
 
@@ -49,7 +57,7 @@ class UsersController < ApplicationController
 		if user.save
 			redirect_to '/users'
 		else
-			redirect_to '/users/modify/'+@id
+			redirect_to users_modify_path(@id)
 		end
 	end
 	def login
@@ -73,7 +81,7 @@ class UsersController < ApplicationController
 			end
 			redirect_to '/'
 		else
-			redirect_to '/users/login?msg=loginfails'
+			redirect_to users_login_path(msg: 'login fails')
 		end
 	end
 end

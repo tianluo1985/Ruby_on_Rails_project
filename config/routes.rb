@@ -4,12 +4,12 @@ Rails.application.routes.draw do
 
   get 'users/logout' =>'users#logout'
   post 'users/authenticate' =>'users#authenticate'
-  get 'users/login' => 'users#login'
-  get 'users/new' => 'users#new'
+  get 'users/login' => 'users#login', as: :users_login
+  get 'users/new' => 'users#new' , as: :users_new
   post 'users' => 'users#create'
   get 'users' => 'users#index'
   post 'users/change' =>'users#change'
-  get 'users/modify/:id' =>'users#modify'
+  get 'users/modify/:id' =>'users#modify', as: :users_modify
   get 'users/delete/:id' =>'users#delete'
   get 'users/:id&:page_num' => 'users#show'
   # The priority is based upon order of creation: first created -> highest priority.

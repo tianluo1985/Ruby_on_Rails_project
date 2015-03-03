@@ -1,13 +1,29 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  username: MyString
-  password: MyString
-  phone: MyString
-  addr: MyText
+Billy:
+  username: Billymanluo
+  password: 1234567
+  phone: 6032770970
+  addr: 8000 Cummings Hall
+  email: billy@yahoo.com
 
-two:
-  username: MyString
-  password: MyString
-  phone: MyString
-  addr: MyText
+Tim:
+  username: Tim0312
+  password: 654321
+  phone: 6036434000
+  addr: No.1 Main St. 
+  email: tim02@gmail.com
+
+CC:
+  username: CiCi
+  password: 334455
+  phone: 6036434000
+  addr: No.1 Main St. 
+  email: cc@gmail.com  
+
+TT:
+  username: XiXi
+  password: 33ff455
+  phone: 6036434000
+  addr: No.1 Main St. 
+  email: xx@gmail.com   
