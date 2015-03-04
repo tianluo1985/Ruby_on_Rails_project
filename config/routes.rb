@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   get 'categories/new/:pid' => 'categories#new',as: :categories_new
   post 'categories' => 'categories#create'
   get 'categories/admin' => 'categories#index' ,as: :categories_admin
+
+  get 'products/new' => 'products#new', as: :products_new
+  post 'products' => 'products#create'
+  get 'products' => 'products#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

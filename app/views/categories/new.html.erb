@@ -1,5 +1,8 @@
 	<br><br>
 	<div class="container" style="width: 500px">
+		<% if notice %>
+		<p class="notice"><%=notice%></p>
+		<%end%>
 		
 		<%=form_tag("/categories",method: "post") do %>
 			<input type="hidden" name="pid" value=<%=@pid%>>
@@ -22,7 +25,7 @@
 			function checkInput(){
 				var name=document.getElementById("name")
 				if (name.value.length==0) {
-					alert("please enter username")
+					alert("please enter category name")
 					return false
 				}
 				return true

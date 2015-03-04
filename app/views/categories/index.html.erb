@@ -1,15 +1,18 @@
 <br><br>
       <div class="container">
+        <% if notice %>
+          <p class="notice"><%=notice%></p>
+        <%end%>
         <div class="col-md-9">
           <br>
           <% @root_categories.each do |rcate|%>
           
-          <h3><%=rcate.name%> <%=link_to 'add category', categories_new_url(rcate.id),class: "btn btn-default" %></h3>
+          <h3><%=rcate.name%> <%=link_to 'add category', categories_new_path(rcate.id),class: "btn btn-default" %></h3>
         
           <ul>
           <%cates=Category.where(pid: rcate.id)%>
           <%cates.each do |cate|%>
-          <li><h4><%=cate.name%></h4></li>
+          <li><h4><%=cate.name%> <%=link_to 'add product', products_new_path(category_id: cate.id) %></h4></li>
           <%end%>
           </ul>
           <%end%>

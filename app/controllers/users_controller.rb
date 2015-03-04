@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	include PagingHandle
+
 	def test
 		
 		#user=User.authenticate(username:'UserG',password:'123456')
@@ -29,13 +31,18 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		@total_pages=User.total_pages
-		if params[:page_num]
-			@page_num=params[:page_num].to_i
-		else
+		page_size=10
+		@page_num=params[:page_num]
+		unless @page_num
 			@page_num=1
+		else
+			@page_num=@page_num.to_i
 		end
-		@users=User.get_by_page_num(@page_num)
+		users=User.all
+		total_numbers=users.count
+		@total_pages=total_pages(total_numbers,page_size)
+		@page_num=boundary_check(@page_num,@total_pages)
+		@users=items_by_page_number(users,@page_num,page_size)
 	end
 	def show
 		@page_num=params[:page_num]
@@ -61,7 +68,6 @@ class UsersController < ApplicationController
 		end
 	end
 	def login
-		@msg=params[:msg]||''
 		@username=cookies[:username]||''
 	end
 	def logout
