@@ -12,8 +12,8 @@ module PagingHandle
 	end
 
 	def boundary_check(page_number,total_pages)
-		page_num=[page_number,total_pages].min 
-		page_num=[page_num,1].max 
+		page_number=[page_number,total_pages].min 
+		page_number=[page_number,1].max 
 	end
 
 end

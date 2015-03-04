@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 		if user.valid?
 			redirect_to '/'
 		else
-			redirect_to users_new_url
+			redirect_to users_new_url , notice: 'user create fail'
 		end
 	end
 

@@ -2,7 +2,9 @@
 
 	<br><br>
 	<div class="container" style="width: 500px">
-		
+		<% if notice%>
+		<%=notice%>
+		<%end%>
 		<%=form_tag("/users",method: "post") do %>
 			<div class="form group">
 				<label >username *</label>

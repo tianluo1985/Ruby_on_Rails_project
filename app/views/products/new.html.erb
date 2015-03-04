@@ -1,5 +1,8 @@
 	<br><br>
 	<div class="container" style="width: 500px">
+		<% if notice%>
+		<%=notice%>
+		<%end%>
 		
 		<%=form_tag("/products",method: "post") do %>
 			<div class="form group">
