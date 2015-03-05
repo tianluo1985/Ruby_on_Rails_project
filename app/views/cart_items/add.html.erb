@@ -1,0 +1,19 @@
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+         <%=image_tag @product.img_url, alt: 'produc image' %>
+    </div>
+        <div class="col-md-8">
+            <h3><%=@product.name%></h3>
+            <h4><%=@product.descr%></h4>
+            <h4><%= number_to_currency @product.price%></h4>
+           
+          <%=form_tag(add_to_cart_path,method: 'post') do%>
+          <input type="hidden" name="product_id" value="<%=@product.id%>">
+          <%=label_tag :quantity, 'quantity: '%>
+          <%=text_field_tag :quantity%>
+          <%=submit_tag "add to cart", class: "btn btn-default"%>
+          <%end%>
+      </div>
+</div>   
+</div>            

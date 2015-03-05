@@ -1,5 +1,5 @@
 <div class="row">
-
+<br><br><br>
 </div>
 <div class="row">
 	<div class="col-md-2">
@@ -52,7 +52,7 @@
                         <h4><%= number_to_currency product.price%></h4>
                     </div>
                     <div class="col-md-3">
-                        <%=link_to "Show",root_path,class: "btn btn-default"%>
+                        <%=link_to "Buy",cart_items_add_path(product.id),class: "btn btn-default"%>
                     </div>
                 </div>
                 <%end%>

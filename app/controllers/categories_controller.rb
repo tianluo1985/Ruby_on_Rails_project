@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+	include SessionHandle
+	before_action :administrator_login_check
+	
 	def new
 		@pid=params[:pid]
 		unless @pid

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305152537) do
+ActiveRecord::Schema.define(version: 20150305172116) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "username",        limit: 255
@@ -20,12 +20,40 @@ ActiveRecord::Schema.define(version: 20150305152537) do
     t.datetime "updated_at",                  null: false
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer  "quantity",   limit: 4
+    t.integer  "product_id", limit: 4
+    t.integer  "cart_id",    limit: 4
+    t.integer  "order_id",   limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "cart_items", ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
+  add_index "cart_items", ["order_id"], name: "index_cart_items_on_order_id", using: :btree
+  add_index "cart_items", ["product_id"], name: "index_cart_items_on_product_id", using: :btree
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.text     "descr",      limit: 65535
     t.integer  "pid",        limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.text     "address",      limit: 65535
+    t.string   "email",        limit: 255
+    t.string   "pay_type",     limit: 255
+    t.decimal  "total_prices",               precision: 10, scale: 2
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -60,4 +88,7 @@ ActiveRecord::Schema.define(version: 20150305152537) do
     t.string   "email",      limit: 255
   end
 
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "orders"
+  add_foreign_key "cart_items", "products"
 end

@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 	include PagingHandle
+	include SessionHandle
+	before_action :administrator_login_check
 
 	def new
 		@category_id=params[:category_id]

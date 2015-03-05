@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'home/advancedsearch'=> 'home#advancedsearch', as: :home_advancedsearch
   post 'home/searchresult' => 'home#searchresult', as: :home_searchresult
 
-  get 'users/logout' =>'users#logout'
+  get 'users/logout' =>'users#logout',as: :users_logout
   post 'users/authenticate' =>'users#authenticate'
   get 'users/login' => 'users#login', as: :users_login
   get 'users/new' => 'users#new' , as: :users_new
@@ -37,6 +37,14 @@ Rails.application.routes.draw do
   get 'administrators/logout' => 'administrators#logout', as: :administrators_logout
   post 'administrators' => 'administrators#create'
   post 'administrators/authenticate' => 'administrators#authenticate', as: :administrators_authenticate
+
+  get 'cart_items/add/:product_id' => 'cart_items#add', as: :cart_items_add
+  post 'cart_items/add_to_cart' => 'cart_items#add_to_cart', as: :add_to_cart
+  post 'cart_items/update_item' => 'cart_items#update_item', as: :update_item
+  get 'cart_items/delete_item/:cart_item_id' => 'cart_items#delete_item', as: :delete_item
+
+  get 'carts/show' => 'carts#show', as: :carts_show
+  get 'carts/empty_cart' => 'carts#empty_cart', as: :empty_cart
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

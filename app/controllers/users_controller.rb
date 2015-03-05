@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 	include PagingHandle
+	include SessionHandle
+	before_action :administrator_login_check, only: [:delete,:index,:modify]
 
 	def test
 		#user=User.authenticate(username:'UserG',password:'123456')

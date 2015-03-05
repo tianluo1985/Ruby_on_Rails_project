@@ -1,0 +1,41 @@
+<br><br><br>
+
+<div class="container">    
+    <div class="row">
+        <table class="table table-stripped">
+            <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>quantity</th>                   
+                    <th>Operations</th>
+                    <th>Operations</th>
+                  </tr>
+            </thead>
+            <tbody>                 
+                <% @cart_items.each do |item|%>
+                <tr>
+                    <th><%=item.id %></th>
+                    <th><%=item.product.name %></th>
+                    <th><%=item.product.price %></th>
+                    <%=form_tag(update_item_url, method: 'post') do%>
+                    <th> <input name="quantity" size="3" value="<%=item.quantity %>"/>
+                    </th>
+                    <th>
+                        <input type="hidden" name="cart_item_id" value="<%=item.id%>"/>
+                        <%=submit_tag "Update", class: "btn btn-default"%>
+                    </th>
+                    <%end%>
+                    <th>
+                        <%=link_to "Delete", delete_item_path(item.id),class: "btn btn-default"%>
+                    </th>
+                </tr>
+                <%end%>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <%=link_to "Empty Shopping Cart", empty_cart_path, class: "btn btn-default"%>  
+    </div>
+</div>
