@@ -1,0 +1,24 @@
+<div class="container">    
+    <div class="row">
+    	<table class="table table-stripped">
+            <thead>
+            </thead>
+            <tbody>                 
+                <% @products.each do |product|%>
+                <div class="row">
+                    <div class="col-md-3">
+                        <%=image_tag product.img_url, alt: 'produc image' %>
+                    </div>
+                    <div class="col-md-6">
+                        <h3><%=product.name%></h3>
+                        <h4><%= number_to_currency product.price%></h4>
+                    </div>
+                    <div class="col-md-3">
+                        <%=link_to "Show",root_path,class: "btn btn-default"%>
+                    </div>
+                </div>
+                <%end%>
+            </tbody>
+        </table>
+    </div>
+</div>

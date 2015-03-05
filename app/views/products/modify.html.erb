@@ -1,0 +1,54 @@
+<br><br>
+	<div class="container" style="width: 500px">
+		<% if notice%>
+		<%=notice%>
+		<%end%>
+		
+		<%=form_tag(products_change_path,method: "post") do %>
+			<input type="hidden" name="id" value="<%=@id%>"/>
+			<div class="form group">
+				<label >product name *</label>
+				<input  id="name" class="form-control" placeholder="Enter Product Name" name="name"
+				value="<%=@product.name%>"/>
+			</div>
+			<div class="form group">
+				<label >price *</label>
+				<input  id="price" class="form-control" placeholder="Enter Product Price" name="price"
+				value="<%=@product.price%>"/>
+			</div>
+			<div class="form group">
+				<label >img_url</label>
+				<input   class="form-control" placeholder="Enter Imagine Url" name="img_url"
+				value="<%=@product.img_url%>"/>
+			</div>
+			<div class="form group">
+				<label>description</label>
+				<textarea id="descr" class="form-control" name="descr" col="24 " row="4"><%=@product.descr%></textarea>
+			</div>		
+			<div>
+				<button type="submit" class="btn btn-default" onclick="return checkInput();">Modify</button>
+				<button class="btn btn-default" onclick="return backToHome();">Return</button>
+			</div>
+		<%end%>
+		
+
+		<script type ="text/javascript">
+			function checkInput(){
+				var name=document.getElementById("name")
+				if (name.value.length==0) {
+					alert("please enter product name")
+					return false
+				}
+				var price=document.getElementById("price")
+				if (price.value.length==0) {
+					alert("please enter price")
+					return false
+				}
+				return true
+			}
+
+			function backToHome(){
+				window.location.href="/"
+				return false
+			}
+		</script>

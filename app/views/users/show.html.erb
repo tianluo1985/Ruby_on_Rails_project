@@ -35,8 +35,9 @@
             <div class="col-md-3" >
             </div>
             <div class="col-md-6">
-              <a href=<%='/users/modify/'+@id %> class="btn btn-default">Modify</a>
-              <a href=<%='/users?page_num='+@page_num %> class="btn btn-default">Back</a>
+              <%=link_to 'Modify',users_modify_path(@id),class: "btn btn-default"%>
+              <%=link_to 'Delete', user_delete_path(@id), class: "btn btn-default"%>
+              <%=link_to 'Back', users_admin_path, class: "btn btn-default"%>
             </div>
           </div>
       </div>

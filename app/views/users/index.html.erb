@@ -23,17 +23,18 @@
                     <th><%=user.email %></th>
                     <th><%=user.created_at %></th>
                     <th>
-                       <a href=<%="users/"+user.id.to_s+"&"+@page_num.to_s %> class="btn btn-default">View</a>
-                       <a href=<%='users/delete/'+user.id.to_s%> class="btn btn-default">Delete</a>
+                       <%= link_to 'Show' , users_show_path(user.id), class: "btn btn-default"%> 
+                       <%=link_to 'Delete', user_delete_path(user.id), class: "btn btn-default"%>
                     </th>
                   </tr>
                   <%end%>
-                  <tr><a href=<%='/users?page_num='+([@page_num-1,1].max).to_s %> class="btn btn-default">Previous Page</a>
-                    Page <%= @page_num %> 
-                    <a href=<%='/users?page_num='+([@page_num+1,@total_pages].min).to_s %> class="btn btn-default">Next Page</a>
+                  <tr>
+                    <%=link_to 'Previous Page', users_admin_path(page: [@page-1,1].max), class: "btn btn-default"%>
+                    Page <%= @page %> 
+                    <%= link_to 'Next Page', users_admin_path(page: [@page+1,@total_pages].min ), class: "btn btn-default"%>
                     Total <%=@total_pages%>
-                    <%=form_tag("/users",method: 'get') do%>
-                    To <input id="page_num" name="page_num" value=<%=@page_num%> size="2"> page
+                    <%=form_tag(users_admin_path ,method: 'get') do%>
+                    To <input id="page" name="page" value=<%=@page%> size="2"> page
                     <button type="submit" class="btn btn-default" onclick="return checkInput();">Go</button>
                     <%end%>
                   </tr>
@@ -52,8 +53,8 @@
 
       <script type ="text/javascript">
       function checkInput(){
-        var page_num=document.getElementById("page_num")
-        if (page_num.value.length==0) {
+        var page=document.getElementById("page")
+        if (page.value.length==0) {
           alert("page number can not be empty")
           return false
         }

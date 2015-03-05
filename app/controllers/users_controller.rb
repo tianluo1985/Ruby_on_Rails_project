@@ -2,13 +2,12 @@ class UsersController < ApplicationController
 	include PagingHandle
 
 	def test
-		
 		#user=User.authenticate(username:'UserG',password:'123456')
 		#session[:user_id]=user.id	
 		#@user_id=session[:user_id]
 	end
 	def test2
-		session[:user_id]=nil
+		#session[:user_id]=nil
 		#@user_id=session[:user_id]
 	end
 	def new
@@ -30,28 +29,33 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def delete
+		user=User.find(params[:id])
+		user.destroy
+		redirect_to users_admin_url , notice: 'user successfully deleted'
+	end
+
 	def index
 		page_size=10
-		@page_num=params[:page_num]
-		unless @page_num
-			@page_num=1
+		@page=params[:page]
+		unless @page
+			@page=1
 		else
-			@page_num=@page_num.to_i
+			@page=@page.to_i
 		end
 		users=User.all
 		total_numbers=users.count
 		@total_pages=total_pages(total_numbers,page_size)
-		@page_num=boundary_check(@page_num,@total_pages)
-		@users=items_by_page_number(users,@page_num,page_size)
+		@page=boundary_check(@page,@total_pages)
+		@users=items_by_page_number(users,@page,page_size)
 	end
 	def show
-		@page_num=params[:page_num]
 		@id=params[:id]
-		@user=User.find(@id.to_i)
+		@user=User.find(@id)
 	end
 	def modify
 		@id=params[:id]
-		@user=User.find(@id.to_i)
+		@user=User.find(@id)
 	end
 	def change
 		@id=params[:id]

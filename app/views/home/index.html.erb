@@ -1,0 +1,87 @@
+<div class="row">
+
+</div>
+<div class="row">
+	<div class="col-md-2">
+		<br>
+		<h4><%=link_to 'All Categories', root_path%></h4>
+        <br>
+        <% @root_categories.each do |rcate|%>                 
+	        <ul>
+	          <%cates=Category.where(pid: rcate.id)%>
+	          <h4><%=rcate.name%></h4>
+	          <%cates.each do |cate|%>
+	          	<li><h5><%=link_to cate.name, root_path(category_id: cate.id) %></h5></li>
+	          <%end%>
+	        </ul>
+        <%end%>
+    </div>
+    <div class="col-md-10">
+        <div class="row">
+         <div class="col-md-6">
+            <%=form_tag(home_basicsearch_path,method: 'post') do%>
+            <div class="form group">
+                <input type="search"  name="keyword" size="62">          
+                <label><button type="submit" class="btn btn-default">Search</button></label>
+            </div>
+            <%end%>
+        </div>
+        <div class="col-md-2">
+            <%= link_to 'Advanced Search', home_advancedsearch_path, class: "btn btn-default"%>
+        </div>
+        </div>
+    	<div class="row">
+    		<br>
+    		<br>
+    			<% if notice%>
+				<%=notice%>
+				<%end%>
+        </div>
+    	<div class="row">
+    	<table class="table table-stripped">
+            <thead>
+            </thead>
+            <tbody>                 
+                <% @products.each do |product|%>
+                <div class="row">
+                    <div class="col-md-3">
+                        <%=image_tag product.img_url, alt: 'produc image' %>
+                    </div>
+                    <div class="col-md-6">
+                        <h3><%=product.name%></h3>
+                        <h4><%= number_to_currency product.price%></h4>
+                    </div>
+                    <div class="col-md-3">
+                        <%=link_to "Show",root_path,class: "btn btn-default"%>
+                    </div>
+                </div>
+                <%end%>
+                <tr>
+                	<%=link_to 'Previous Page', root_path(page: [@page-1,1].max , category_id: @category_id), class: "btn btn-default"%>
+                    Page <%= @page%> 
+                    <%=link_to 'Next Page', root_path(page: [@page+1,@total_pages].min , category_id: @category_id), class: "btn btn-default"%>
+                    Total <%=@total_pages%>
+                    <%=form_tag(root_url,method: 'get') do%>
+                    To <input id="page" name="page" value=<%=@page%> size="2"> page
+                  	<input type="hidden" name="category_id" value=<%=@category_id%>>
+                    <button type="submit" class="btn btn-default" onclick="return checkInput();">Go</button>
+                    <%end%>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    </div>
+</div>
+
+    <script type ="text/javascript">
+      function checkInput(){
+        var page=document.getElementById("page")
+        if (page.value.length==0) {
+          alert("page number can not be empty")
+          return false
+        }
+        return true
+      }  
+    </script>

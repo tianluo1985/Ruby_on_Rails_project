@@ -1,0 +1,68 @@
+	<div class="container" style="width: 1000px">
+		<% if notice%>
+		<%=notice%>
+		<%end%>
+		
+		<%=form_tag(home_searchresult_url,method: "post") do %>
+		<div class="row">
+			<div class="form group">
+				<label >Key Word</label>
+				<input  id="keyword" class="form-control" placeholder="Enter Product Name" name="keyword"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label> Price between </label>
+			</div>
+			<div class="col-md-3">
+				<input  name="price_from" size="26"/>
+			</div>
+			<div class="col-md-1">
+				<label> and </label>
+			</div>			
+			<div class="col-md-3">
+				<input  name="price_to" size="26"/>
+			</div>			
+			<div class="row">
+			<div class="form group">
+				<label>category 
+					<select name="category_id">
+						<option value="all" selected>All Categories</option>
+						<% @categories.each do |cate|%>
+						<option value="<%=cate.id%>"><%=cate.name%></option>
+						<%end%>
+					</select>
+				</label>
+			</div>
+		</div>
+				<button type="submit" class="btn btn-default" onclick="return checkInput();">Search</button>
+				<button class="btn btn-default" onclick="return backToHome();">return</button>
+			</div>
+		<%end%>
+	</div>
+
+	<script type ="text/javascript">
+			function checkInput(){
+				var keyword=document.getElementById("keyword")
+				if (keyword.value.length==0) {
+					alert("please enter keyword")
+					return false
+				}
+				var price_from=document.getElementById("price_from")
+				if (price_from.value.length==0) {
+					alert("please enter price")
+					return false
+				}
+			    var price_to=document.getElementById("price")
+				if (price_to.value.length==0) {
+					alert("please enter price")
+					return false
+				}
+				return true
+			}
+
+			function backToHome(){
+				window.location.href="/"
+				return false
+			}
+		</script>

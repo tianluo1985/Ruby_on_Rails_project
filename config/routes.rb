@@ -1,17 +1,23 @@
 Rails.application.routes.draw do
-  get 'users/test' => 'users#test'
-  get 'users/test2' => 'users#test2'
+  get 'users/test' => 'users#test', as: :users_test
+  get 'users/test2' => 'users#test2',as: :users_test2
+
+  root 'home#index'
+  post 'home/basicsearch' => 'home#basicsearch',as: :home_basicsearch
+  get 'home/advancedsearch'=> 'home#advancedsearch', as: :home_advancedsearch
+  post 'home/searchresult' => 'home#searchresult', as: :home_searchresult
 
   get 'users/logout' =>'users#logout'
   post 'users/authenticate' =>'users#authenticate'
   get 'users/login' => 'users#login', as: :users_login
   get 'users/new' => 'users#new' , as: :users_new
   post 'users' => 'users#create'
-  get 'users' => 'users#index'
+  get 'users/admin' => 'users#index', as: :users_admin
   post 'users/change' =>'users#change'
   get 'users/modify/:id' =>'users#modify', as: :users_modify
-  get 'users/delete/:id' =>'users#delete'
-  get 'users/:id&:page_num' => 'users#show'
+  get 'users/delete/:id' =>'users#delete', as: :user_delete
+  get 'users/:id' => 'users#show', as: :users_show
+  delete 'users/:id' =>'users#destroy'
 
   get 'categories/new/:pid' => 'categories#new',as: :categories_new
   post 'categories' => 'categories#create'
@@ -19,7 +25,11 @@ Rails.application.routes.draw do
 
   get 'products/new' => 'products#new', as: :products_new
   post 'products' => 'products#create'
-  get 'products' => 'products#index'
+  get 'products/admin' => 'products#index', as: :products_admin
+  get 'products/modify/:id' => 'products#modify', as: :products_modify
+  post 'products/change' => 'products#change',as: :products_change
+  get 'products/delete/:id' => 'products#delete', as: :products_delete
+  delete 'products/:id' => 'products#destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
