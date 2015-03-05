@@ -30,6 +30,13 @@ Rails.application.routes.draw do
   post 'products/change' => 'products#change',as: :products_change
   get 'products/delete/:id' => 'products#delete', as: :products_delete
   delete 'products/:id' => 'products#destroy'
+
+
+  get 'administrators/new' => 'administrators#new', as: :new_administrator
+  get 'administrators/login' => 'administrators#login' ,as: :administrators_login
+  get 'administrators/logout' => 'administrators#logout', as: :administrators_logout
+  post 'administrators' => 'administrators#create'
+  post 'administrators/authenticate' => 'administrators#authenticate', as: :administrators_authenticate
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

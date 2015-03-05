@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 		#redirect_to '/'
 		user=User.create(username: params[:username],password: params[:password],phone: params[:phone],email: params[:email],addr: params[:addr])
 		if user.valid?
-			redirect_to '/'
+			redirect_to root_url
 		else
 			redirect_to users_new_url , notice: 'user create fail'
 		end
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
 		user.phone=params[:phone]
 		user.addr=params[:addr]
 		if user.save
-			redirect_to '/users'
+			redirect_to users_admin_url
 		else
 			redirect_to users_modify_url(@id)
 		end
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
 		if session[:user_id]
 			session[:user_id]=nil
 		end
-		redirect_to '/'
+		redirect_to root_url
 	end
 	def authenticate	
 		user=User.authenticate(username: params[:username],password: params[:password])
@@ -89,7 +89,7 @@ class UsersController < ApplicationController
 			else
 				cookies.delete(:username)
 			end
-			redirect_to '/'
+			redirect_to root_url
 		else
 			redirect_to users_login_url ,notice: 'username or password not right'
 		end
