@@ -14,12 +14,12 @@
               <a class="navbar-brand" href="/">Home</a>
               <div>
               <ul class="nav navbar-nav">
-                  <li><%=link_to "All Categories",root_path%></li>
                   <li><%=link_to "My Shopping Cart",carts_show_path%></li>
                   <% if administrator_loggedin?%>
                   <li><%= link_to "Categories Admin",categories_admin_path%></li>
                   <li><%= link_to "Products Admin",products_admin_path%></li>
                   <li><%= link_to "Users Admin" , users_admin_path%></li>
+                  <li><%= link_to "Orders Admin" , orders_admin_path%></li>
                   <%end%>
               </ul>
             </div>
@@ -41,7 +41,7 @@
             </div>
           </div>
      </div>
-<br>
+<br><br>
 
 
 <%= yield %>

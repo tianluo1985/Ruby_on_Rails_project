@@ -10,4 +10,13 @@ class Cart < ActiveRecord::Base
 		end
 		current_item
 	end
+
+	def total_prices
+		if self.cart_items.empty?
+			return 0
+		else
+			prices=self.cart_items.map{|item| item.price}
+			prices.inject{|sum,price| sum+price}
+		end
+	end
 end

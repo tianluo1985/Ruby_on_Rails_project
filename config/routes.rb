@@ -45,6 +45,12 @@ Rails.application.routes.draw do
 
   get 'carts/show' => 'carts#show', as: :carts_show
   get 'carts/empty_cart' => 'carts#empty_cart', as: :empty_cart
+
+  get 'orders/new' => 'orders#new', as: :new_order
+  post 'orders' => 'orders#create' 
+  get 'orders/admin'=>'orders#index', as: :orders_admin
+  get 'orders/:id' => 'orders#show', as: :orders_show
+  get 'orders/delete/:id' => 'orders#delete', as: :order_delete
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -51,14 +51,19 @@ class UsersController < ApplicationController
 		@page=boundary_check(@page,@total_pages)
 		@users=items_by_page_number(users,@page,page_size)
 	end
+	
 	def show
 		@id=params[:id]
 		@user=User.find(@id)
+	rescue ActiveRecord::RecordNotFound
+		redirect_to root_url, notice: 'user not exist'
 	end
+
 	def modify
 		@id=params[:id]
 		@user=User.find(@id)
 	end
+
 	def change
 		@id=params[:id]
 		user=User.find(@id.to_i)
@@ -73,15 +78,18 @@ class UsersController < ApplicationController
 			redirect_to users_modify_url(@id)
 		end
 	end
+
 	def login
 		@username=cookies[:username]||''
 	end
+
 	def logout
 		if session[:user_id]
 			session[:user_id]=nil
 		end
 		redirect_to root_url
 	end
+
 	def authenticate	
 		user=User.authenticate(username: params[:username],password: params[:password])
 		if user

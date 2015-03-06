@@ -1,0 +1,30 @@
+<br><br><br>
+
+<div class="container">    
+    <div class="row">
+        <table class="table table-stripped">
+            <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>quantity</th>                   
+                  </tr>
+            </thead>
+            <tbody>                 
+                <% @order.cart_items.each do |item|%>
+                <tr>
+                    <th><%=item.id %></th>
+                    <th><%=item.product.name %></th>
+                    <th><%=number_to_currency item.product.price %></th>                   
+                    <th><%= item.quantity %></th>
+                </tr>
+                <%end%>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <label>
+            Total Prices: 
+        <%= number_to_currency @order.total_prices%>
+    </label>

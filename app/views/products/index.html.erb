@@ -45,9 +45,8 @@
                     <th><%=number_to_currency product.price %></th>
                     <th><%=product.category.name %></th>
                     <th>
-                       <a href=<%="products/"+product.id.to_s+"&"+@page.to_s %> class="btn btn-default">Show</a>
                        <%= link_to 'Modify' ,products_modify_path(product.id), class: "btn btn-default"%>
-                       <a href=<%='products/delete/'+product.id.to_s%> class="btn btn-default">Delete</a>
+                       <%= link_to 'Delete', products_delete_path(product.id), class: "btn btn-default"%>
                     </th>
                 </tr>
                 <%end%>

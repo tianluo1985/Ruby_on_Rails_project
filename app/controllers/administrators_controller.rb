@@ -32,6 +32,8 @@ class AdministratorsController < ApplicationController
 		end
 		redirect_to root_url
 	end
+	
+private
 
 	def administrator_params
 		params.require(:administrator).permit(:username,:password)
